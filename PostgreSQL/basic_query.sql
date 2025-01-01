@@ -25,11 +25,11 @@ create table person(
 
 -- Datatypes
 INT 
-NUMERIC
-VARCHAR 
+NUMERIC (NUMERIC(4,1)) --format
+VARCHAR (VARCHAR(20)) --format
 TEXT
 SERIAL
-DATE
+DATE (YYYY-MM-DD) -- format
 BOOLEAN
 
 -- contraints
@@ -37,8 +37,8 @@ SERIAL
 NOT NULL
 UNIQUE
 PRIMARY KEY
-FOREIGN KEY
-DEFAULT
+FOREIGN KEY (FOREIGN KEY(c_name) REFERENCES table_name(c_name)) --format
+DEFAULT 
 AUTO_INCREMENT -- FOR MYSQL
 
 -- Creating a table with foreign key
@@ -57,4 +57,10 @@ insert into person(name, age, height, is_alive, bio, birthday_date) values('Dhee
 -- Inserting Data into Tables Without Specifying Column Names:
 -- When inserting data, ensure that the values are provided in the same order as the columns in the table to prevent errors. Additionally, avoid manually assigning an ID when using the SERIAL type for the id column, as this may lead to errors due to the automatic incrementing behavior.
 insert into person values(2,'Jayhind', 22, 5.5, true, 'anime lover', '2003-02-20');
+
+-- returning all the row from table
+select * from person;
+
+-- Selecting specific columns
+select id, name, height from person;
 
