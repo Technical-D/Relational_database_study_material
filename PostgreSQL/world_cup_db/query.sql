@@ -74,38 +74,38 @@ $> chmod +x insert_data.sh
 $> chmod +x queries.sh 
 
 -- Queries
-Total number of goals in all games from winning teams:
+-- Total number of goals in all games from winning teams:
 SELECT SUM(winner_goals) FROM games;
 
-Total number of goals in all games from both teams combined:
+-- Total number of goals in all games from both teams combined:
 select sum(winner_goals)+sum(opponent_goals) from games;
 
-Average number of goals in all games from the winning teams:
+-- Average number of goals in all games from the winning teams:
 select avg(winner_goals) from games;
 
-Average number of goals in all games from the winning teams rounded to two decimal places:
+-- Average number of goals in all games from the winning teams rounded to two decimal places:
 select round(avg(winner_goals), 2) from games;
 
-Average number of goals in all games from both teams:
+-- Average number of goals in all games from both teams:
 select avg(winner_goals + opponent_goals) from games;
 
-Most goals scored in a single game by one team:
+-- Most goals scored in a single game by one team:
 select max(winner_goals) from games;
 
-Number of games where the winning team scored more than two goals:
+-- Number of games where the winning team scored more than two goals:
 select count(*) from games where winner_goals > 2;
 
-Winner of the 2018 tournament team name:
+-- Winner of the 2018 tournament team name:
 select name from games join teams on games.winner_id = teams.team_id where year = 2018 and round = 'Final';
 
-List of teams who played in the 2014 'Eighth-Final' round:
+-- List of teams who played in the 2014 'Eighth-Final' round:
 select name from games join teams on games.winner_id = teams.team_id or games.opponent_id = teams.team_id where year = 2014 and round = 'Eighth-Final' order by name;
 
-List of unique winning team names in the whole data set:
+-- List of unique winning team names in the whole data set:
 select distinct(name) from games join teams on games.winner_id = teams.team_id order by name;
 
-Year and team name of all the champions:
+-- Year and team name of all the champions:
 select year,name from games join teams on games.winner_id = teams.team_id where round = 'Final' order by year;
 
-List of teams that start with 'Co':
+-- List of teams that start with 'Co':
 select name from teams where name like 'Co%' order by name;
