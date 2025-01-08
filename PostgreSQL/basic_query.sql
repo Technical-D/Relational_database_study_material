@@ -64,3 +64,8 @@ select * from person;
 -- Selecting specific columns
 select id, name, height from person;
 
+-- for creating dump of database(run in bash terminal)
+pg_dump -cC --inserts -U freecodecamp salon > salon.sql
+
+-- To recreate database
+psql -U postgres < salon.sql
